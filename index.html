@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Recorder - Download & Email</title>
+    <link rel="stylesheet" href="recorder-submit-optimized.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- <header class="app-header">
+            <h1 class="app-title">Submit Recorder</h1>
+            <p class="app-subtitle">Record, download, and email your audio or video</p>
+        </header> -->
+        <main class="main-content">
+            <div id="homeScreen" class="home-screen">
+                <div class="recorder-card" onclick="startRecording('video')" tabindex="0" role="button" aria-label="Start video recording">
+                    <div class="recorder-card-icon video-icon">🎥</div>
+                    <h2 class="recorder-card-title">Record Video</h2>
+                    <!-- <p class="recorder-card-description">Capture high-quality video with audio using your camera</p> -->
+                </div>
+                <div class="recorder-card" onclick="startRecording('audio')" tabindex="0" role="button" aria-label="Start audio recording">
+                    <div class="recorder-card-icon audio-icon">🎙️</div>
+                    <h2 class="recorder-card-title">Record Audio</h2>
+                    <!-- <p class="recorder-card-description">Record clear audio using your microphone</p> -->
+                </div>
+            </div>
+            <div id="recordingScreen" class="recording-screen">
+                <header class="recording-header">
+                    <h2 class="recording-title">
+                        <div class="recording-title-icon video-icon" id="recordingIcon">🎥</div>
+                        <span id="recordingTypeTitle">Video Recording</span>
+                    </h2>
+                    <button class="back-button" onclick="goHome()">← Back to Home</button>
+                </header>
+                <div class="recording-content">
+                    <div class="media-preview" id="mediaPreview">
+                        <div class="video-preview" id="videoPreviewContainer">
+                            <video id="videoPreview" class="media-element" autoplay muted playsinline></video>
+                            <video id="videoPlayback" class="media-element hidden" controls playsinline></video>
+                        </div>
+                        <div class="audio-preview hidden" id="audioPreviewContainer">
+                            <audio id="audioPlayback" class="audio-element hidden" controls></audio>
+                            <div id="audioVisualization" class="audio-visualization">
+                                <div style="color: white; text-align: center;">
+                                    <div style="font-size: 48px; margin-bottom: 1rem;">🎙️</div>
+                                    <div style="font-size: 1.125rem;">Ready to record audio</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recording-status-overlay" id="recordingStatusOverlay">
+                            <div class="recording-status-content">
+                                <div class="recording-status-icon">●</div>
+                                <div class="recording-status-text" id="recordingStatusText">Recording</div>
+                                <div class="recording-timer" id="recordingTimer">00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recording-controls">
+                        <button class="control-button primary-button" id="startButton" onclick="toggleRecording()">⏺️ Start Recording</button>
+                        <button class="control-button danger-button hidden" id="pauseButton" onclick="toggleRecording()">⏸️ Pause</button>
+                        <button class="control-button danger-button hidden" id="resumeButton" onclick="toggleRecording()">▶️ Resume</button>
+                        <button class="control-button secondary-button" id="stopButton" onclick="stopRecording()" disabled>⏹️ Stop</button>
+                    </div>
+                    <div class="download-section" id="downloadSection">
+                    
+                        <button class="control-button success-button" onclick="downloadRecording()" style="margin-bottom: 2%;">💾 Download Recording</button>
+                    </div>
+                    <div class="submit-section" id="submitSection">    <div class="download-icon">📥</div>
+                        <h3 class="download-title">Recording Complete!</h3>
+                        <p class="download-description">Your recording is ready to download</p>
+                        <div class="submit-header">
+                            <div class="submit-icon">📧</div>
+                            <h3 class="submit-title">Share Your Recording</h3>
+                            <p class="submit-description">Fill out the form below to send your recording via email</p>
+                        </div>
+                        <form id="submitForm">
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Your Name *</label>
+                                <input type="text" id="fullName" class="form-input" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Your Email *</label>
+                                <input type="email" id="email" class="form-input" required placeholder="Enter your email address">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message (Optional)</label>
+                                <textarea id="message" class="form-input form-textarea" placeholder="Add a message to accompany your recording..."></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="control-button success-button" onclick="downloadRecording()">
+                                    💾 Download
+                                </button>
+                                <button type="submit" class="control-button purple-button" id="submitButton">
+                                    📧 Send Email
+                                </button>
+                            </div>
+                            <div id="submitStatus"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="recorder-submit-optimized.js"></script>
+</body>
+</html>
